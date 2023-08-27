@@ -6,18 +6,12 @@ api.elburrito.films.nomoredomainsicu.ru
 
 ## Роуты
 
-# возвращает информацию о пользователе (email и имя)
-GET /users/me
+GET /users/me  -  возвращает информацию о пользователе (email и имя)
 
-# обновляет информацию о пользователе (email и имя)
-PATCH /users/me
+PATCH /users/me  -  обновляет информацию о пользователе (email и имя)
 
-# возвращает все сохранённые текущим пользователем фильмы
-GET /movies
+GET /movies  -  возвращает все сохранённые текущим пользователем фильмы
 
-# создаёт фильм с переданными в теле
-# country, director, duration, year, description, image, trailer, nameRU, nameEN и thumbnail, movieId
-POST /movies
+POST /movies  -  создаёт фильм с переданными в теле country, director, duration, year, description, image, trailer, nameRU, nameEN и thumbnail, movieId
 
-# удаляет сохранённый фильм по id
-DELETE /movies/_id
+DELETE /movies/_id  -  удаляет сохранённый фильм по id
