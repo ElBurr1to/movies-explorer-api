@@ -46,7 +46,7 @@ function createMovie(req, res, next) {
     .then((movie) => movie.populate('owner'))
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
-      if (err.message === 'Validation failed') next(new ValidationError('Некорректные данные в запросе'));
+      if (err.name === 'ValidationError') next(new ValidationError('Некорректные данные в запросе'));
       else next(err);
     });
 }
