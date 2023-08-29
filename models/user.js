@@ -6,9 +6,9 @@ const AuthorizationError = require('../errors/AuthorizationError');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: [true, 'Поле "name" обязательно'],
     minlength: [2, 'Минимальная длина поля "name" - 2 символа'],
     maxlength: [30, 'Максимальная длина поля "name" - 30 символа'],
-    default: 'Аноним',
   },
   email: {
     type: String,

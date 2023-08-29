@@ -21,7 +21,7 @@ function createMovie(req, res, next) {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -36,7 +36,7 @@ function createMovie(req, res, next) {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -45,7 +45,10 @@ function createMovie(req, res, next) {
   })
     .then((movie) => movie.populate('owner'))
     .then((movie) => res.status(201).send(movie))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') next(new ValidationError('Некорректные данные в запросе'));
+      else next(err);
+    });
 }
 
 function deleteMovie(req, res, next) {

@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../errors/NotFoundError');
 const AlreadyExistsError = require('../errors/AlreadyExistsError');
+const ValidationError = require('../errors/ValidationError');
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 
@@ -29,6 +30,7 @@ function createUser(req, res, next) {
     })
     .catch((err) => {
       if (err.code === 11000) next(new AlreadyExistsError('Пользователь с таким email уже существует'));
+      else if (err.name === 'ValidationError') next(new ValidationError('Некорректные данные в запросе'));
       else next(err);
     });
 }
@@ -63,7 +65,11 @@ function updateProfile(req, res, next) {
     .then((user) => {
       res.send(user);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.code === 11000) next(new AlreadyExistsError('Этот email уже занят'));
+      else if (err.name === 'ValidationError') next(new ValidationError('Некорректные данные в запросе'));
+      else next(err);
+    });
 }
 
 function login(req, res, next) {
