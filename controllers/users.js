@@ -98,7 +98,7 @@ function login(req, res, next) {
 function logout(req, res) {
   res
     .clearCookie('token')
-    .send({ message: 'Пользователь успешно вышел из системы'});
+    .send({ message: 'Пользователь успешно вышел из системы' });
 }
 
 module.exports = {

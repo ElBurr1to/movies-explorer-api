@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
   credentials: true,
-  origin: ['https://elburrito.films.nomoredomainsicu.ru'],
+  origin: ['https://elburrito.films.nomoredomainsicu.ru', 'http://localhost:3000'],
 }));
 app.use(helmet());
 app.use(requestLogger);
